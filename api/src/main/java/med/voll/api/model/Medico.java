@@ -2,6 +2,7 @@ package med.voll.api.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import med.voll.api.dto.MedicoDto;
 import med.voll.api.enums.Especialidade;
 
 @Table(name = "medicos")
@@ -27,4 +28,12 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+
+    public Medico(MedicoDto medicoDto){
+        this.nome = medicoDto.nome();
+        this.email = medicoDto.email();
+        this.crm = medicoDto.crm();
+        this.especialidade = medicoDto.especialidade();
+        this.endereco = new Endereco(medicoDto.endereco());
+    }
 }
