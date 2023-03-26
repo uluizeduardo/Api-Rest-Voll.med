@@ -8,6 +8,7 @@ import med.voll.api.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ListaDeMedicosDto>> listarMedicos(Pageable pageable){
+    public ResponseEntity<Page<ListaDeMedicosDto>> listarMedicos(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
         return ResponseEntity.ok(medicoService.listarMedicos(pageable));
     }
 }
