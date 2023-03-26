@@ -6,6 +6,8 @@ import med.voll.api.mapper.MedicoMapper;
 import med.voll.api.model.Medico;
 import med.voll.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +25,7 @@ public class MedicoService {
         return medicoRepository.save(medico);
     }
 
-    public List<ListaDeMedicosDto> listarMedicos() {
-        List<ListaDeMedicosDto> listaDeMedicosDto = MedicoMapper.INSTANCE.medicoParalistaDeMedicoDto(medicoRepository.findAll());
-        return listaDeMedicosDto;
+    public Page<ListaDeMedicosDto> listarMedicos(Pageable pageable) {
+        return medicoRepository.findAll(pageable).map(ListaDeMedicosDto::new);
     }
 }
