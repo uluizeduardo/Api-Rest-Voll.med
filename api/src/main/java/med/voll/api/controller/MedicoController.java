@@ -1,6 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
+import med.voll.api.dto.DadosAtualizacaoMedicoDto;
 import med.voll.api.dto.ListaDeMedicosDto;
 import med.voll.api.dto.MedicoDto;
 import med.voll.api.model.Medico;
@@ -12,8 +13,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("medicos")
@@ -30,5 +29,10 @@ public class MedicoController {
     @GetMapping
     public ResponseEntity<Page<ListaDeMedicosDto>> listarMedicos(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
         return ResponseEntity.ok(medicoService.listarMedicos(pageable));
+    }
+
+    @PutMapping
+    public void atualizarMedico(@RequestBody @Valid DadosAtualizacaoMedicoDto dadosAtualizacaoMedicoDto){
+        medicoService.atualizaMedico(dadosAtualizacaoMedicoDto);
     }
 }

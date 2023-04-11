@@ -1,5 +1,6 @@
 package med.voll.api.service;
 
+import med.voll.api.dto.DadosAtualizacaoMedicoDto;
 import med.voll.api.dto.ListaDeMedicosDto;
 import med.voll.api.dto.MedicoDto;
 import med.voll.api.mapper.MedicoMapper;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class MedicoService {
@@ -27,5 +26,11 @@ public class MedicoService {
 
     public Page<ListaDeMedicosDto> listarMedicos(Pageable pageable) {
         return medicoRepository.findAll(pageable).map(ListaDeMedicosDto::new);
+    }
+
+    @Transactional
+    public void atualizaMedico(DadosAtualizacaoMedicoDto dadosAtualizacaoMedicoDto) {
+        var medico = medicoRepository.getReferenceById(dadosAtualizacaoMedicoDto.id());
+        medico.atualizarDadosMedico(dadosAtualizacaoMedicoDto);
     }
 }

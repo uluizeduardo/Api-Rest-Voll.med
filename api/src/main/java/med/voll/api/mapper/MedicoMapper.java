@@ -1,5 +1,6 @@
 package med.voll.api.mapper;
 
+import med.voll.api.dto.DadosAtualizacaoMedicoDto;
 import med.voll.api.dto.ListaDeMedicosDto;
 import med.voll.api.dto.MedicoDto;
 import med.voll.api.model.Medico;
@@ -17,4 +18,6 @@ public interface MedicoMapper {
     MedicoDto medicoParaDto(Medico medico);
 
     List<ListaDeMedicosDto> medicoParalistaDeMedicoDto(List<Medico> medico);
+
+    Medico dtoParaMedico (DadosAtualizacaoMedicoDto dadosAtualizacaoMedicoDto);
 }
