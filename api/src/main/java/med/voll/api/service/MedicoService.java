@@ -34,8 +34,14 @@ public class MedicoService {
         medico.atualizarDadosMedico(dadosAtualizacaoMedicoDto);
     }
 
-    @Transactional
+    /*@Transactional
     public void deletarMedico(Long id){
         medicoRepository.deleteById(id);
+    }*/
+
+    @Transactional
+    public void excluir(Long id) {
+        var medico = medicoRepository.getReferenceById(id);
+        medico.excluir();
     }
 }

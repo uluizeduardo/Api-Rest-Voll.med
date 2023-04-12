@@ -36,8 +36,15 @@ public class MedicoController {
         medicoService.atualizaMedico(dadosAtualizacaoMedicoDto);
     }
 
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public void deletarMedico(@PathVariable Long id){
         medicoService.deletarMedico(id);
+    }*/
+
+    @DeleteMapping("/{id}")
+    public void deletarMedico(@PathVariable Long id){ // Esse método faz a exclusão lógica do medico, mão deleta os dados.
+        medicoService.excluir(id);
     }
+
+
 }
