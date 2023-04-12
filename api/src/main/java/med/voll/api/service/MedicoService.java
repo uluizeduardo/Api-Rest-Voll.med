@@ -33,4 +33,9 @@ public class MedicoService {
         var medico = medicoRepository.getReferenceById(dadosAtualizacaoMedicoDto.id());
         medico.atualizarDadosMedico(dadosAtualizacaoMedicoDto);
     }
+
+    @Transactional
+    public void deletarMedico(Long id){
+        medicoRepository.deleteById(id);
+    }
 }
